@@ -10,6 +10,7 @@
     --bg:#EAE6DD; --card:#F5F2EB; --edge:#DED8CB; --ink:#3D372F;
     --sub:#8A8175; --line:#C8BEA9; --accent:#A88B6A;
     --tempo:#A88B6A; --dyn:#7E8B7A; --expr:#96838F; --tech:#7C8A96;
+    --nav:#B07A5E; --word:#9A9186;
     --serif:'游明朝','Yu Mincho','YuMincho','Hiragino Mincho ProN',serif;
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
@@ -192,6 +193,108 @@ const DICT = [
   {t:"arco",a:["arco"],r:"アルコ",c:"tech",m:"ゆみで ひく（ピツィカートの あと）"},
   {t:"simile",a:["simile","sim"],r:"シーミレ",c:"tech",m:"おなじように つづけて"},
   {t:"pedal",a:["pedal","ped"],r:"ペダル",c:"tech",m:"ペダルを ふむ"},
+
+  // はやさ（テンポ）ふやした ぶん
+  {t:"Larghissimo",a:["larghissimo"],r:"ラルギッシモ",c:"tempo",m:"ラルゴより もっと おそく",bpm:[40,52]},
+  {t:"Larghetto",a:["larghetto"],r:"ラルゲット",c:"tempo",m:"ラルゴより ちょっと はやめ",bpm:[60,66]},
+  {t:"Adagietto",a:["adagietto"],r:"アダージェット",c:"tempo",m:"アダージョより ちょっと はやめ",bpm:[70,80]},
+  {t:"Vivo",a:["vivo"],r:"ヴィーヴォ",c:"tempo",m:"いきいきと、はやく",bpm:[140,176]},
+  {t:"Comodo",a:["comodo","commodo"],r:"コモド",c:"tempo",m:"むりのない、ちょうどいい はやさで"},
+  {t:"Tempo giusto",a:["tempogiusto","giusto"],r:"テンポ・ジュスト",c:"tempo",m:"きちんと した はやさで"},
+  {t:"Rubato",a:["rubato","temporubato"],r:"ルバート",c:"tempo",m:"はやさを じゆうに のびちぢみさせて"},
+  {t:"Allargando",a:["allargando","allarg"],r:"アッラルガンド",c:"tempo",m:"だんだん おそく、ゆったり ひろげて"},
+  {t:"Doppio movimento",a:["doppiomovimento"],r:"ドッピオ・モヴィメント",c:"tempo",m:"いままでの ばいの はやさで"},
+  {t:"Stretto",a:["stretto"],r:"ストレット",c:"tempo",m:"せきこんで、はやめていく"},
+
+  // つよさ（強弱）ふやした ぶん
+  {t:"pianississimo",a:["pianississimo","ppp"],r:"ピアニッシッシモ",c:"dyn",m:"きえそうなくらい とても よわく（ppp）"},
+  {t:"fortississimo",a:["fortississimo","fff"],r:"フォルティッシッシモ",c:"dyn",m:"めちゃくちゃ つよく（fff）"},
+  {t:"forzando",a:["forzando","forzato","fz"],r:"フォルツァンド",c:"dyn",m:"そこだけ ぐっと つよく（fz）"},
+  {t:"rinforzando",a:["rinforzando","rinf","rfz","rf"],r:"リンフォルツァンド",c:"dyn",m:"そこを きゅうに つよく"},
+  {t:"smorzando",a:["smorzando","smorz"],r:"スモルツァンド",c:"dyn",m:"だんだん きえて、よわく おそく"},
+  {t:"perdendosi",a:["perdendosi","perdendo"],r:"ペルデンドシ",c:"dyn",m:"だんだん きえていくように"},
+  {t:"mancando",a:["mancando","manc"],r:"マンカンド",c:"dyn",m:"だんだん よわく、きえるように"},
+  {t:"sotto voce",a:["sottovoce"],r:"ソット・ヴォーチェ",c:"dyn",m:"こえを おさえて、ひそやかに"},
+  {t:"mezza voce",a:["mezzavoce"],r:"メッザ・ヴォーチェ",c:"dyn",m:"はんぶんくらいの つよさで"},
+
+  // きもち（発想・表情）ふやした ぶん
+  {t:"affettuoso",a:["affettuoso","conaffetto"],r:"アフェットゥオーソ",c:"expr",m:"あいじょうを こめて"},
+  {t:"amabile",a:["amabile"],r:"アマービレ",c:"expr",m:"あいらしく、やさしく"},
+  {t:"amoroso",a:["amoroso","conamore"],r:"アモローソ",c:"expr",m:"あいを こめて、やさしく"},
+  {t:"brillante",a:["brillante"],r:"ブリランテ",c:"expr",m:"きらきらと、はなやかに"},
+  {t:"capriccioso",a:["capriccioso","capricc"],r:"カプリチオーソ",c:"expr",m:"きまぐれに、じゆうに"},
+  {t:"con anima",a:["conanima","anima"],r:"コン・アニマ",c:"expr",m:"こころを こめて、いきいきと"},
+  {t:"con fuoco",a:["confuoco","fuoco"],r:"コン・フォーコ",c:"expr",m:"ひのように、もえるように"},
+  {t:"con spirito",a:["conspirito","spirito"],r:"コン・スピーリト",c:"expr",m:"げんきに、いきいきと"},
+  {t:"con dolcezza",a:["condolcezza","dolcezza"],r:"コン・ドルチェッツァ",c:"expr",m:"あまく、やさしく"},
+  {t:"con tenerezza",a:["contenerezza","tenerezza"],r:"コン・テネレッツァ",c:"expr",m:"やさしさを こめて"},
+  {t:"deciso",a:["deciso"],r:"デチーゾ",c:"expr",m:"きっぱりと、はっきりと"},
+  {t:"delicato",a:["delicato","delicatamente"],r:"デリカート",c:"expr",m:"やさしく、こまやかに"},
+  {t:"dolente",a:["dolente"],r:"ドレンテ",c:"expr",m:"かなしそうに"},
+  {t:"doloroso",a:["doloroso","condolore"],r:"ドロローソ",c:"expr",m:"かなしく、いたむように"},
+  {t:"energico",a:["energico","conenergia"],r:"エネルジコ",c:"expr",m:"ちからづよく"},
+  {t:"eroico",a:["eroico","eroica"],r:"エロイコ",c:"expr",m:"ゆうかんに、えいゆうのように"},
+  {t:"flebile",a:["flebile"],r:"フレービレ",c:"expr",m:"なきそうに、よわよわしく"},
+  {t:"funebre",a:["funebre"],r:"フネブレ",c:"expr",m:"おそうしきのように、くらく おもく"},
+  {t:"furioso",a:["furioso"],r:"フリオーソ",c:"expr",m:"あれくるうように、はげしく"},
+  {t:"gentile",a:["gentile"],r:"ジェンティーレ",c:"expr",m:"じょうひんに、やさしく"},
+  {t:"grandioso",a:["grandioso","congrandezza"],r:"グランディオーソ",c:"expr",m:"おおきく、どうどうと"},
+  {t:"lacrimoso",a:["lacrimoso"],r:"ラクリモーソ",c:"expr",m:"なみだ ぐんで、かなしく"},
+  {t:"lamentoso",a:["lamentoso","lamentabile"],r:"ラメントーソ",c:"expr",m:"なげくように、かなしく"},
+  {t:"lusingando",a:["lusingando"],r:"ルジンガンド",c:"expr",m:"あまえるように、やさしく"},
+  {t:"malinconico",a:["malinconico","malinconia"],r:"マリンコニコ",c:"expr",m:"さびしげに、ゆううつに"},
+  {t:"mesto",a:["mesto"],r:"メスト",c:"expr",m:"さびしく、かなしく"},
+  {t:"misterioso",a:["misterioso"],r:"ミステリオーソ",c:"expr",m:"なぞめいて、ふしぎそうに"},
+  {t:"pomposo",a:["pomposo"],r:"ポンポーソ",c:"expr",m:"どうどうと、いばったように"},
+  {t:"religioso",a:["religioso"],r:"レリジオーソ",c:"expr",m:"いのるように、おごそかに"},
+  {t:"sereno",a:["sereno"],r:"セレーノ",c:"expr",m:"はれやかに、おだやかに"},
+  {t:"soave",a:["soave"],r:"ソアーヴェ",c:"expr",m:"やわらかく、やさしく"},
+  {t:"sonoro",a:["sonoro"],r:"ソノーロ",c:"expr",m:"よく ひびかせて"},
+  {t:"tenero",a:["tenero","teneramente"],r:"テネロ",c:"expr",m:"やさしく、いとおしむように"},
+  {t:"calmando",a:["calmando","calmato"],r:"カルマンド",c:"expr",m:"おちついて、しずかに"},
+
+  // ひきかた（奏法）ふやした ぶん
+  {t:"staccatissimo",a:["staccatissimo"],r:"スタッカーティッシモ",c:"tech",m:"おとを うんと みじかく きって"},
+  {t:"legatissimo",a:["legatissimo"],r:"レガーティッシモ",c:"tech",m:"とても なめらかに つなげて"},
+  {t:"non legato",a:["nonlegato"],r:"ノン・レガート",c:"tech",m:"つなげずに、ひとつずつ"},
+  {t:"portato",a:["portato"],r:"ポルタート",c:"tech",m:"きらずに、でも すこし はなして"},
+  {t:"martellato",a:["martellato","martellando"],r:"マルテッラート",c:"tech",m:"ハンマーで うつように、つよく はっきり"},
+  {t:"con sordino",a:["consordino","sordino","sord"],r:"コン・ソルディーノ",c:"tech",m:"よわおんきを つけて、おとを おさえて"},
+  {t:"una corda",a:["unacorda","unacor"],r:"ウナ・コルダ",c:"tech",m:"ひだりの ペダルを ふんで やわらかく"},
+  {t:"tre corde",a:["trecorde","trecorde","tuttelecorde"],r:"トレ・コルデ",c:"tech",m:"ひだりペダルを はなす（もとに もどす）"},
+  {t:"ottava",a:["ottava","8va","ott"],r:"オッターヴァ",c:"tech",m:"1オクターブ たかく（ひくく）ひく"},
+  {t:"loco",a:["loco"],r:"ロコ",c:"tech",m:"かいてある たかさで、ふつうに ひく"},
+
+  // すすみかた（くりかえし・とぶ）
+  {t:"Da Capo (D.C.)",a:["dacapo","dc"],r:"ダ・カーポ",c:"nav",m:"きょくの さいしょに もどる"},
+  {t:"D.C. al Fine",a:["dacapoalfine","dcalfine"],r:"ダ・カーポ・アル・フィーネ",c:"nav",m:"さいしょに もどって「Fine」まで"},
+  {t:"Dal Segno (D.S.)",a:["dalsegno","ds"],r:"ダル・セーニョ",c:"nav",m:"「セーニョ」の しるしに もどる"},
+  {t:"Segno",a:["segno"],r:"セーニョ",c:"nav",m:"もどる ばしょの しるし"},
+  {t:"Coda",a:["coda"],r:"コーダ",c:"nav",m:"きょくの おわりの ぶぶん"},
+  {t:"al Coda",a:["alcoda","tocoda"],r:"アル・コーダ",c:"nav",m:"「コーダ」へ とぶ"},
+  {t:"Fine",a:["fine"],r:"フィーネ",c:"nav",m:"おわり"},
+  {t:"al Fine",a:["alfine"],r:"アル・フィーネ",c:"nav",m:"「Fine」の ところまで"},
+  {t:"Repeat",a:["repeat","ritornello"],r:"リピート",c:"nav",m:"くりかえし（‖: :‖のなか）"},
+  {t:"1./2. volta",a:["volta","primavolta","secondavolta"],r:"ヴォルタ",c:"nav",m:"1かいめ・2かいめ の かっこ"},
+  {t:"bis",a:["bis"],r:"ビス",c:"nav",m:"そのぶぶんを 2かい くりかえす"},
+  {t:"attacca",a:["attacca"],r:"アッタッカ",c:"nav",m:"やすまず つぎへ つづける"},
+
+  // ことば（ほかの ことばに くっつく）
+  {t:"assai",a:["assai"],r:"アッサイ",c:"word",m:"とても（例：allegro assai＝とても はやく）"},
+  {t:"molto",a:["molto"],r:"モルト",c:"word",m:"とても"},
+  {t:"poco",a:["poco"],r:"ポーコ",c:"word",m:"すこし"},
+  {t:"poco a poco",a:["pocoapoco"],r:"ポーコ・ア・ポーコ",c:"word",m:"すこしずつ"},
+  {t:"più",a:["piu"],r:"ピウ",c:"word",m:"もっと"},
+  {t:"meno",a:["meno"],r:"メノ",c:"word",m:"もっと ひかえめに"},
+  {t:"ma",a:["ma"],r:"マ",c:"word",m:"でも、けれど"},
+  {t:"ma non troppo",a:["manontroppo"],r:"マ・ノン・トロッポ",c:"word",m:"でも、やりすぎないで"},
+  {t:"non troppo",a:["nontroppo"],r:"ノン・トロッポ",c:"word",m:"やりすぎないで"},
+  {t:"sempre",a:["sempre"],r:"センプレ",c:"word",m:"ずっと、いつも"},
+  {t:"subito",a:["subito","sub"],r:"スービト",c:"word",m:"きゅうに、すぐに"},
+  {t:"quasi",a:["quasi"],r:"クアジ",c:"word",m:"〜のように、まるで"},
+  {t:"con",a:["con"],r:"コン",c:"word",m:"〜を もって、〜とともに"},
+  {t:"senza",a:["senza"],r:"センツァ",c:"word",m:"〜なしで"},
+  {t:"molto espressivo",a:["moltoespressivo"],r:"モルト・エスプレッシーヴォ",c:"word",m:"とても きもちを こめて"},
 ];
 
 const CAT = {
@@ -199,6 +302,8 @@ const CAT = {
   dyn:  {label:"つよさ",color:"var(--dyn)"},
   expr: {label:"きもち",color:"var(--expr)"},
   tech: {label:"ひきかた",color:"var(--tech)"},
+  nav:  {label:"すすみかた",color:"var(--nav)"},
+  word: {label:"ことば",color:"var(--word)"},
 };
 
 // ── メトロノーム ─────────────────────────────────────────
@@ -365,16 +470,38 @@ fileInput.addEventListener('change',async(ev)=>{
     await worker.terminate();
 
     const hits=matchTerms(data.text||'');
-    let html=`<img id="preview" src="${preview}" alt="うつした がくふ">`;
-    if(hits.length){
-      html+=`<div class="section-t">み つ け た こ と ば</div>`;
-      hits.forEach((e,i)=>html+=cardHTML(e,'ocr'+i));
+    stage.innerHTML=`<img id="preview" src="${preview}" alt="うつした がくふ">`
+      +`<div id="ocrArea"></div>`
+      +`<button class="again" id="againBtn">べつの がくふを うつす</button>`;
+    const area=document.getElementById('ocrArea');
+
+    if(hits.length===0){
+      area.innerHTML=`<div class="note-msg">ことばが みつからなかったよ。<br>もじが おおきく うつるように とるか、<br>したの じてんから さがしてね。</div>`;
+    }else if(hits.length===1){
+      area.innerHTML=`<div class="section-t">み つ け た こ と ば</div>`+cardHTML(hits[0],'ocr0');
+      bindCards(area);
     }else{
-      html+=`<div class="note-msg">ことばが みつからなかったよ。<br>もじが おおきく うつるように とるか、<br>したの じてんから さがしてね。</div>`;
+      // 候補が いくつか → タップで えらぶ
+      area.innerHTML=`<div class="section-t">ど れ を し ら べ る ？</div>`
+        +`<div class="chips" id="ocrChoices"></div><div id="picked"></div>`;
+      const choices=document.getElementById('ocrChoices');
+      const picked=document.getElementById('picked');
+      hits.forEach((e,i)=>{
+        const b=document.createElement('button');
+        b.className='chip'; b.dataset.i=i;
+        b.innerHTML=`${e.t}<span style="font-size:11px;margin-left:5px;opacity:.6">${e.r}</span>`;
+        b.addEventListener('click',()=>{
+          metroStop();
+          const wasOn=b.classList.contains('on');
+          choices.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
+          if(wasOn){ picked.innerHTML=''; return; }
+          b.classList.add('on');
+          picked.innerHTML=cardHTML(e,'pick'+i);
+          bindCards(picked);
+        });
+        choices.appendChild(b);
+      });
     }
-    html+=`<button class="again" id="againBtn">べつの がくふを うつす</button>`;
-    stage.innerHTML=html;
-    bindCards(stage);
     document.getElementById('againBtn').addEventListener('click',resetStage);
   }catch(err){
     stage.innerHTML=`<img id="preview" src="${preview}" alt="うつした がくふ">
@@ -397,7 +524,7 @@ const dictEl=document.getElementById('dict');
 const searchEl=document.getElementById('search');
 let curCat='all', curQ='';
 
-const chipDefs=[['all','ぜんぶ'],['tempo','はやさ'],['dyn','つよさ'],['expr','きもち'],['tech','ひきかた']];
+const chipDefs=[['all','ぜんぶ'],['tempo','はやさ'],['dyn','つよさ'],['expr','きもち'],['tech','ひきかた'],['nav','すすみかた'],['word','ことば']];
 chipDefs.forEach(([k,l])=>{
   const b=document.createElement('button');
   b.className='chip'+(k==='all'?' on':''); b.textContent=l; b.dataset.k=k;
